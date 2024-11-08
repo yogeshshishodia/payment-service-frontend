@@ -1,0 +1,40 @@
+<div class="container">
+    <mat-card>
+      <mat-card-title>Money Transfer</mat-card-title>
+      <mat-card-content>
+        <form [formGroup]="transferForm" (ngSubmit)="onSubmit()">
+          <mat-form-field class="full-width">
+            <mat-label>Sender Username</mat-label>
+            <input matInput placeholder="Enter sender's username" formControlName="senderUsername" />
+            <mat-error *ngIf="transferForm.get('senderUsername')?.hasError('required')">
+              Sender username is required.
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field class="full-width">
+            <mat-label>Receiver Username</mat-label>
+            <input matInput placeholder="Enter receiver's username" formControlName="receiverUsername" />
+            <mat-error *ngIf="transferForm.get('receiverUsername')?.hasError('required')">
+              Receiver username is required.
+            </mat-error>
+          </mat-form-field>
+  
+          <mat-form-field class="full-width">
+            <mat-label>Amount</mat-label>
+            <input matInput type="number" placeholder="Enter amount" formControlName="amount" />
+            <mat-error *ngIf="transferForm.get('amount')?.hasError('required')">
+              Amount is required.
+            </mat-error>
+            <mat-error *ngIf="transferForm.get('amount')?.hasError('min')">
+              Amount should be greater than 0.
+            </mat-error>
+          </mat-form-field>
+  
+          <button mat-raised-button color="primary" type="submit" [disabled]="transferForm.invalid">
+            Transfer Money
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

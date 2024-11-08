@@ -1,0 +1,73 @@
+<div class="container">
+  <mat-card>
+    <mat-card-title>Transaction History</mat-card-title>
+    <mat-card-content>
+      <!-- Username Input -->
+      <mat-form-field class="full-width">
+        <mat-label>Enter Username</mat-label>
+        <input matInput [(ngModel)]="username" placeholder="Enter username" />
+      </mat-form-field>
+
+      <!-- Load History Button -->
+      <button mat-raised-button color="primary" (click)="loadTransactionHistory()" [disabled]="!username">
+        Load History
+      </button>
+
+      <!-- Transactions Table -->
+      <table mat-table [dataSource]="transactions">
+        
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.id }}</td>
+        </ng-container>
+
+        <!-- Amount Column -->
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef> Amount </th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.amount }}</td>
+        </ng-container>
+
+        <!-- Sender Username Column -->
+        <ng-container matColumnDef="senderUsername">
+          <th mat-header-cell *matHeaderCellDef> Sender Username </th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.senderUsername || 'N/A' }}</td>
+        </ng-container>
+
+        <!-- Sender Balance Column -->
+        <ng-container matColumnDef="senderBalance">
+          <th mat-header-cell *matHeaderCellDef> Sender Balance </th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.senderBalance || 'N/A' }}</td>
+        </ng-container>
+                <!-- Sender Balance Column -->
+                <ng-container matColumnDef="receiverBalance">
+                  <th mat-header-cell *matHeaderCellDef> receiver Balance </th>
+                  <td mat-cell *matCellDef="let transaction">{{ transaction.receiverBalance || 'N/A' }}</td>
+                </ng-container>
+
+        <!-- Receiver Username Column -->
+        <ng-container matColumnDef="receiverUsername">
+          <th mat-header-cell *matHeaderCellDef> Receiver Username </th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.receiverUsername || 'N/A' }}</td>
+        </ng-container>
+
+        <!-- Date Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let transaction">{{ transaction.date | date: 'short' }}</td>
+        </ng-container>
+
+        
+
+        <!-- Table Header and Row Rendering -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <!-- No Transactions Message -->
+      <div *ngIf="transactions.length === 0">
+        <p>No transaction history available.</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

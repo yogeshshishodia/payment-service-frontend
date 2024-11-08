@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  table {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  mat-card {
+    width: 80%;
+    max-width: 800px;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
